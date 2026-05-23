@@ -1,0 +1,15 @@
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\bin\Debug\net9.0\MiServicio.Application.deps.json
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\bin\Debug\net9.0\MiServicio.Application.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\bin\Debug\net9.0\MiServicio.Application.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\bin\Debug\net9.0\MiServicio.Domain.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\bin\Debug\net9.0\MiServicio.Domain.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.csproj.AssemblyReference.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.AssemblyInfoInputs.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.AssemblyInfo.cs
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.csproj.CoreCompileInputs.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServic.FDF14E58.Up2Date
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\refint\MiServicio.Application.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\MiServicio.Application.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Application\obj\Debug\net9.0\ref\MiServicio.Application.dll

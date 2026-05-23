@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "EcGIjF/wVWE=",
+  "success": true,
+  "projectFilePath": "C:\\Hospital Sync\\Hospital-Sync\\backend\\MiServicio.Infrastructure\\MiServicio.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jhonk\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.8\\microsoft.extensions.dependencyinjection.abstractions.10.0.8.nupkg.sha512"
+  ],
+  "logs": []
+}

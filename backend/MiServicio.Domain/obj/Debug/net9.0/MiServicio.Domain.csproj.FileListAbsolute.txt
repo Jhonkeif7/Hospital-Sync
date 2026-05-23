@@ -1,0 +1,11 @@
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\bin\Debug\net9.0\MiServicio.Domain.deps.json
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\bin\Debug\net9.0\MiServicio.Domain.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\bin\Debug\net9.0\MiServicio.Domain.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\MiServicio.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\MiServicio.Domain.AssemblyInfoInputs.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\MiServicio.Domain.AssemblyInfo.cs
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\MiServicio.Domain.csproj.CoreCompileInputs.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\MiServicio.Domain.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\refint\MiServicio.Domain.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\MiServicio.Domain.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Domain\obj\Debug\net9.0\ref\MiServicio.Domain.dll

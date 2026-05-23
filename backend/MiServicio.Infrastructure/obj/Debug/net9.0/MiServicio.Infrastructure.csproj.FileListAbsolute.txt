@@ -1,0 +1,17 @@
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.csproj.AssemblyReference.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.AssemblyInfoInputs.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.AssemblyInfo.cs
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Infrastructure.deps.json
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Infrastructure.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Infrastructure.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Application.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Domain.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Application.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\bin\Debug\net9.0\MiServicio.Domain.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServic.6CDA9EFD.Up2Date
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\refint\MiServicio.Infrastructure.dll
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\MiServicio.Infrastructure.pdb
+C:\Hospital Sync\Hospital-Sync\backend\MiServicio.Infrastructure\obj\Debug\net9.0\ref\MiServicio.Infrastructure.dll
