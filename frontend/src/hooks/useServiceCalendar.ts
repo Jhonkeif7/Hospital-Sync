@@ -11,6 +11,7 @@ import {
   getCalendarRangeEnd,
   getCalendarRangeStart,
   getCalendarStats,
+  getServiceAnchor,
 } from "@/data/mockServiceDays";
 import { PERIOD_WEEKS } from "@/lib/calendarConfig";
 import {
@@ -72,7 +73,7 @@ export function useServiceCalendar() {
     () => getCalendarRangeEnd(rangeStart, weekCount),
     [rangeStart, weekCount],
   );
-  const serviceAnchor = rangeStart;
+  const serviceAnchor = useMemo(() => getServiceAnchor(), []);
 
   const allDays = useMemo(
     () => buildCalendarDays(visibleStart, rangeStart, rangeEnd, serviceAnchor, topics, getCategoryName),

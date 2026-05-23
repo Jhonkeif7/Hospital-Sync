@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Lock, Mail, Stethoscope } from "lucide-react";
-import fondoRP from "@/assets/fondoRP2.png";
+import fondoRP from "@/assets/fondoRP2.webp";
 import { DEMO_EMAIL, DEMO_PASSWORD, useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

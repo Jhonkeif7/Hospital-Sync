@@ -5,6 +5,7 @@ import {
   buildCalendarDays,
   getCalendarRangeEnd,
   getCalendarRangeStart,
+  getServiceAnchor,
 } from "@/data/mockServiceDays";
 import type { CalendarDay } from "@/types/calendar";
 
@@ -16,11 +17,12 @@ export function useCalendarDay(date: Date | null, periodWeeks = 10): CalendarDay
 
     const rangeStart = getCalendarRangeStart();
     const rangeEnd = getCalendarRangeEnd(rangeStart, periodWeeks);
+    const serviceAnchor = getServiceAnchor();
     const days = buildCalendarDays(
       rangeStart,
       rangeStart,
       rangeEnd,
-      rangeStart,
+      serviceAnchor,
       topics,
       getCategoryName,
     );

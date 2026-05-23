@@ -17,7 +17,7 @@ const TOPICS_KEY = "hospital-sync-topics";
 const TOPICS_VERSION_KEY = "hospital-sync-topics-version";
 const CATEGORIES_KEY = "hospital-sync-categories";
 /** Incrementar cuando cambien los datos por defecto para fusionarlos en localStorage */
-const TOPICS_STORAGE_VERSION = 2;
+const TOPICS_STORAGE_VERSION = 3;
 
 const defaultCategories: TopicCategory[] = [
   { id: "cat-neumo", name: "Neumología", createdAt: "", updatedAt: "" },
@@ -40,7 +40,7 @@ const defaultTopics: MedicalTopic[] = [
     content:
       "Criterios de ingreso, escalas de gravedad (CURB-65, PSI) y esquema antibiótico empírico según guía local.",
     categoryId: "cat-neumo",
-    presentationDate: "2026-05-22",
+    presentationDate: "2026-05-21",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -50,7 +50,7 @@ const defaultTopics: MedicalTopic[] = [
     content:
       "Clasificación NYHA, manejo de congestión con diuréticos y criterios de monitorización en planta.",
     categoryId: "cat-cardio",
-    presentationDate: "2026-05-22",
+    presentationDate: "2026-05-21",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -60,7 +60,7 @@ const defaultTopics: MedicalTopic[] = [
     content:
       "Apuntes del paciente del servicio: exacerbación, oxigenoterapia, broncodilatadores y plan de alta.",
     categoryId: "cat-casos",
-    presentationDate: "2026-05-22",
+    presentationDate: "2026-05-21",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -69,7 +69,7 @@ const defaultTopics: MedicalTopic[] = [
     title: "Sepsis y shock séptico",
     content: "Manejo inicial, fluidoterapia y antibióticos de amplio espectro.",
     categoryId: "cat-urg",
-    presentationDate: "2026-05-26",
+    presentationDate: "2026-05-25",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -78,7 +78,7 @@ const defaultTopics: MedicalTopic[] = [
     title: "Manejo de vía aérea",
     content: "Algoritmo de intubación y ventilación en urgencias.",
     categoryId: "cat-proc",
-    presentationDate: "2026-05-26",
+    presentationDate: "2026-05-25",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -87,7 +87,7 @@ const defaultTopics: MedicalTopic[] = [
     title: "Diabetes descompensada",
     content: "Criterios de ingreso y manejo de hiperglucemia.",
     categoryId: "cat-endo",
-    presentationDate: "2026-05-30",
+    presentationDate: "2026-05-29",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -96,7 +96,7 @@ const defaultTopics: MedicalTopic[] = [
     title: "Síndrome coronario agudo",
     content: "ECG, troponinas y tratamiento según guía.",
     categoryId: "cat-cardio",
-    presentationDate: "2026-06-03",
+    presentationDate: "2026-06-02",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -105,7 +105,7 @@ const defaultTopics: MedicalTopic[] = [
     title: "Insuficiencia renal aguda",
     content: "Balance hídrico, diuresis y criterios de diálisis.",
     categoryId: "cat-nefro",
-    presentationDate: "2026-06-07",
+    presentationDate: "2026-06-06",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -145,6 +145,14 @@ function mergeWithDefaultTopics(stored: MedicalTopic[]): MedicalTopic[] {
   return missingDefaults.length > 0 ? [...stored, ...missingDefaults] : stored;
 }
 
+function alignDefaultTopicDates(stored: MedicalTopic[]): MedicalTopic[] {
+  const dateById = new Map(defaultTopics.map((topic) => [topic.id, topic.presentationDate]));
+  return stored.map((topic) => {
+    const presentationDate = dateById.get(topic.id);
+    return presentationDate ? { ...topic, presentationDate } : topic;
+  });
+}
+
 function loadTopics(): MedicalTopic[] {
   try {
     const storedRaw = localStorage.getItem(TOPICS_KEY);
@@ -167,6 +175,7 @@ function loadTopics(): MedicalTopic[] {
 
     if (savedVersion < TOPICS_STORAGE_VERSION) {
       topics = mergeWithDefaultTopics(topics);
+      topics = alignDefaultTopicDates(topics);
       saveTopics(topics);
       localStorage.setItem(TOPICS_VERSION_KEY, String(TOPICS_STORAGE_VERSION));
     }

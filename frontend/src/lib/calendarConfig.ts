@@ -1,4 +1,10 @@
+import { parse, startOfDay } from "date-fns";
 import type { PeriodFilter } from "@/types/calendar";
+
+/** Primer día de servicio hospitalario (jueves 21 de mayo de 2026) */
+export const SERVICE_START_DATE = startOfDay(
+  parse("2026-05-21", "yyyy-MM-dd", new Date()),
+);
 
 export const PERIOD_WEEKS: Record<PeriodFilter, number> = {
   "5-weeks": 5,

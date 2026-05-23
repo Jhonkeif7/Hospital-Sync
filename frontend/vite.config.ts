@@ -10,4 +10,21 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    target: "es2022",
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+          if (id.includes("react-router") || id.includes("react-dom") || id.includes("/react/")) {
+            return "vendor-react";
+          }
+          if (id.includes("@radix-ui")) return "vendor-radix";
+          if (id.includes("date-fns")) return "vendor-dates";
+          if (id.includes("lucide-react")) return "vendor-icons";
+        },
+      },
+    },
+  },
 });

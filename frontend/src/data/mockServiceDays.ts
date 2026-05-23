@@ -12,25 +12,25 @@ import {
 import { es } from "date-fns/locale";
 import type { CalendarDay, CalendarStats, Reminder } from "@/types/calendar";
 import type { CalendarTopicDisplay, MedicalTopic } from "@/types/medicalTopic";
-import { PERIOD_WEEKS } from "@/lib/calendarConfig";
+import { PERIOD_WEEKS, SERVICE_START_DATE } from "@/lib/calendarConfig";
 import type { PeriodFilter } from "@/types/calendar";
 
 export const SERVICE_INTERVAL_DAYS = 4;
 
 const mockNotesByDate: Record<string, string> = {
-  "2026-05-22":
+  "2026-05-21":
     "Revisar protocolo de ingreso en planta de medicina interna. Llevar bata, fonendoscopio y guía de antibióticos del hospital.",
-  "2026-05-26":
+  "2026-05-25":
     "Coordinar con residente de guardia la presentación del caso de las 08:00.",
 };
 
 const mockRemindersByDate: Record<string, Reminder[]> = {
-  "2026-05-22": [
+  "2026-05-21": [
     { id: "r1", time: "07:00", title: "Pase de visita" },
     { id: "r2", time: "12:30", title: "Presentación de caso clínico" },
     { id: "r3", time: "18:00", title: "Revisar notas del día" },
   ],
-  "2026-05-26": [
+  "2026-05-25": [
     { id: "r4", time: "07:30", title: "Revisar analíticas de la noche" },
     { id: "r5", time: "14:00", title: "Sesión de semiología" },
   ],
@@ -46,6 +46,10 @@ export function getCalendarRangeStart(referenceDate: Date = new Date()): Date {
 
 export function getCalendarRangeEnd(startDate: Date, weeks: number): Date {
   return addDays(startDate, weeks * 7 - 1);
+}
+
+export function getServiceAnchor(): Date {
+  return SERVICE_START_DATE;
 }
 
 export function isServiceDay(date: Date, anchorDate: Date): boolean {
