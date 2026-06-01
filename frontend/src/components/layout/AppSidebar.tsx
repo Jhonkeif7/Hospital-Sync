@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import {
-  BarChart3,
   BookOpen,
   CalendarDays,
   Heart,
@@ -14,7 +13,6 @@ import type { NavItem } from "@/types/calendar";
 const navItems: NavItem[] = [
   { id: "calendar", label: "Calendario", icon: CalendarDays, path: "/" },
   { id: "topics", label: "Mis temas", icon: BookOpen, path: "/temas" },
-  { id: "summary", label: "Resumen", icon: BarChart3, path: "/resumen" },
   { id: "stats", label: "Estadísticas", icon: TrendingUp, path: "/estadisticas" },
   { id: "settings", label: "Ajustes", icon: Settings, path: "/ajustes" },
 ];
@@ -68,7 +66,7 @@ export function AppSidebar({ mobile = false, onNavigate }: AppSidebarProps) {
         <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/70">
           <Heart className="h-4 w-4 text-stone-600" />
         </div>
-        <p className="text-sm font-semibold text-stone-800">10 semanas organizadas</p>
+        <p className="text-sm font-semibold text-stone-800">Tus semanas organizadas</p>
         <p className="mt-1 text-xs text-stone-600">¡Tú puedes!</p>
       </div>
     </aside>

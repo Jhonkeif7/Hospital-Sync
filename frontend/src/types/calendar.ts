@@ -7,6 +7,10 @@ export interface Reminder {
   id: string;
   time: string;
   title: string;
+  description?: string;
+  isCompleted?: boolean;
+  serviceDayId?: string | null;
+  reminderDate?: string;
 }
 
 export interface CalendarDay {
@@ -16,6 +20,7 @@ export interface CalendarDay {
   topics: CalendarTopicDisplay[];
   notes?: string;
   reminders: Reminder[];
+  serviceDayId?: string;
   /** Día resaltado por búsqueda de temas */
   isSearchHighlighted?: boolean;
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Lock, Mail, Stethoscope } from "lucide-react";
 import fondoRP from "@/assets/fondoRP2.webp";
-import { DEMO_EMAIL, DEMO_PASSWORD, useAuth } from "@/context/AuthContext";
+import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,23 +11,29 @@ import { cn } from "@/lib/utils";
 export function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const [email, setEmail] = useState(DEMO_EMAIL);
-  const [password, setPassword] = useState(DEMO_PASSWORD);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
+    setIsSubmitting(true);
 
-    const success = login(email, password, rememberMe);
-    if (success) {
+    try {
+      const result = await login(email, password);
+
+      if (!result.ok) {
+        setError(result.error ?? "No se pudo iniciar sesión");
+        return;
+      }
+
       navigate("/", { replace: true });
-      return;
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setError("Correo o contraseña incorrectos. Intenta de nuevo.");
   };
 
   return (
@@ -102,16 +108,7 @@ export function LoginPage() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4 text-sm">
-            <label className="flex cursor-pointer items-center gap-2 text-stone-600">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 rounded border-stone-300 text-[#c4a882] focus:ring-[#e8dfd1]"
-              />
-              Recordarme
-            </label>
+          <div className="flex justify-end text-sm">
             <button
               type="button"
               className="text-[#9a8268] transition hover:text-stone-800"
@@ -128,12 +125,13 @@ export function LoginPage() {
 
           <Button
             type="submit"
+            disabled={isSubmitting}
             className={cn(
               "h-12 w-full rounded-xl text-base font-medium",
               "bg-[#e8dfd1] text-stone-800 hover:bg-[#ddd0bc]",
             )}
           >
-            Iniciar sesión
+            {isSubmitting ? "Iniciando sesión…" : "Iniciar sesión"}
           </Button>
         </form>
 

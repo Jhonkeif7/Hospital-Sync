@@ -17,24 +17,11 @@ import type { PeriodFilter } from "@/types/calendar";
 
 export const SERVICE_INTERVAL_DAYS = 4;
 
-const mockNotesByDate: Record<string, string> = {
-  "2026-05-21":
-    "Revisar protocolo de ingreso en planta de medicina interna. Llevar bata, fonendoscopio y guía de antibióticos del hospital.",
-  "2026-05-25":
-    "Coordinar con residente de guardia la presentación del caso de las 08:00.",
-};
-
-const mockRemindersByDate: Record<string, Reminder[]> = {
-  "2026-05-21": [
-    { id: "r1", time: "07:00", title: "Pase de visita" },
-    { id: "r2", time: "12:30", title: "Presentación de caso clínico" },
-    { id: "r3", time: "18:00", title: "Revisar notas del día" },
-  ],
-  "2026-05-25": [
-    { id: "r4", time: "07:30", title: "Revisar analíticas de la noche" },
-    { id: "r5", time: "14:00", title: "Sesión de semiología" },
-  ],
-};
+export interface ServiceDayLookup {
+  id: string;
+  notes?: string | null;
+  isServiceDay?: boolean;
+}
 
 export function getPeriodWeeks(period: PeriodFilter): number {
   return PERIOD_WEEKS[period];
@@ -81,6 +68,8 @@ export function buildCalendarDays(
   serviceAnchor: Date,
   topics: MedicalTopic[],
   getCategoryName: (id: string) => string,
+  serviceDaysByDate: Record<string, ServiceDayLookup> = {},
+  remindersByDate: Record<string, Reminder[]> = {},
 ): CalendarDay[] {
   const gridStart = startOfWeek(visibleStart, { weekStartsOn: 1 });
   const gridEnd = endOfWeek(rangeEnd, { weekStartsOn: 1 });
@@ -95,7 +84,11 @@ export function buildCalendarDays(
   return eachDayOfInterval({ start: gridStart, end: gridEnd }).map((date) => {
     const dateKey = getDateKey(date);
     const isInRange = date >= rangeStart && date <= rangeEnd;
-    const serviceDay = isInRange && isServiceDay(date, serviceAnchor);
+    const dbDay = serviceDaysByDate[dateKey];
+    const algorithmicService = isInRange && isServiceDay(date, serviceAnchor);
+    const serviceDay = dbDay
+      ? Boolean(dbDay.isServiceDay)
+      : algorithmicService;
     const dayTopics = topicsByDate[dateKey] ?? [];
 
     return {
@@ -103,8 +96,9 @@ export function buildCalendarDays(
       isServiceDay: serviceDay,
       isInRange,
       topics: dayTopics,
-      notes: mockNotesByDate[dateKey],
-      reminders: mockRemindersByDate[dateKey] ?? [],
+      notes: dbDay?.notes ?? undefined,
+      serviceDayId: dbDay?.id,
+      reminders: remindersByDate[dateKey] ?? [],
     };
   });
 }

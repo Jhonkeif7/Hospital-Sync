@@ -17,8 +17,8 @@ const TopicsPage = lazy(() =>
 const SettingsPage = lazy(() =>
   import("@/pages/SettingsPage").then((m) => ({ default: m.SettingsPage })),
 );
-const PlaceholderPage = lazy(() =>
-  import("@/pages/PlaceholderPage").then((m) => ({ default: m.PlaceholderPage })),
+const StatisticsPage = lazy(() =>
+  import("@/pages/StatisticsPage").then((m) => ({ default: m.StatisticsPage })),
 );
 
 function PageLoader() {
@@ -30,10 +30,16 @@ function PageLoader() {
 }
 
 function PublicOnlyRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <PageLoader />;
+  }
+
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
+
   return children;
 }
 
@@ -56,24 +62,7 @@ export default function App() {
               <Route index element={<CalendarPage />} />
               <Route path="dia/:date" element={<DayDetailPage />} />
               <Route path="temas" element={<TopicsPage />} />
-              <Route
-                path="resumen"
-                element={
-                  <PlaceholderPage
-                    title="Resumen"
-                    description="Vista general de tu progreso y organización del servicio hospitalario."
-                  />
-                }
-              />
-              <Route
-                path="estadisticas"
-                element={
-                  <PlaceholderPage
-                    title="Estadísticas"
-                    description="Métricas detalladas sobre tus días de servicio y temas estudiados."
-                  />
-                }
-              />
+              <Route path="estadisticas" element={<StatisticsPage />} />
               <Route path="ajustes" element={<SettingsPage />} />
             </Route>
           </Route>

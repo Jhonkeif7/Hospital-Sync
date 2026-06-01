@@ -1,10 +1,13 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   addWeeks,
+  endOfWeek,
   isSameDay,
   startOfDay,
+  startOfWeek,
   subWeeks,
 } from "date-fns";
+import { formatDateKey, useCalendar } from "@/context/CalendarContext";
 import { useTopics } from "@/context/TopicsContext";
 import {
   buildCalendarDays,
@@ -62,6 +65,7 @@ function filterDayTopics(
 
 export function useServiceCalendar() {
   const { topics, getCategoryName } = useTopics();
+  const { serviceDaysByDate, remindersByDate, loadForRange, isLoading, error } = useCalendar();
   const [selectedDate, setSelectedDate] = useState<Date>(() => startOfDay(new Date()));
   const [visibleStart, setVisibleStart] = useState<Date>(() => getCalendarRangeStart());
   const [filters, setFilters] = useState<CalendarFiltersState>(defaultFilters);
@@ -75,9 +79,41 @@ export function useServiceCalendar() {
   );
   const serviceAnchor = useMemo(() => getServiceAnchor(), []);
 
+  const gridStart = useMemo(
+    () => startOfWeek(visibleStart, { weekStartsOn: 1 }),
+    [visibleStart],
+  );
+  const gridEnd = useMemo(
+    () => endOfWeek(rangeEnd, { weekStartsOn: 1 }),
+    [rangeEnd],
+  );
+
+  useEffect(() => {
+    void loadForRange(formatDateKey(gridStart), formatDateKey(gridEnd));
+  }, [gridStart, gridEnd, loadForRange]);
+
   const allDays = useMemo(
-    () => buildCalendarDays(visibleStart, rangeStart, rangeEnd, serviceAnchor, topics, getCategoryName),
-    [visibleStart, rangeStart, rangeEnd, serviceAnchor, topics, getCategoryName],
+    () =>
+      buildCalendarDays(
+        visibleStart,
+        rangeStart,
+        rangeEnd,
+        serviceAnchor,
+        topics,
+        getCategoryName,
+        serviceDaysByDate,
+        remindersByDate,
+      ),
+    [
+      visibleStart,
+      rangeStart,
+      rangeEnd,
+      serviceAnchor,
+      topics,
+      getCategoryName,
+      serviceDaysByDate,
+      remindersByDate,
+    ],
   );
 
   const filteredDays = useMemo(() => {
@@ -147,6 +183,8 @@ export function useServiceCalendar() {
     rangeStart,
     rangeEnd,
     weekCount,
+    isLoading,
+    error,
     setSelectedDate,
     goToToday,
     goToPreviousWeek,
